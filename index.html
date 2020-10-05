@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Local Trend Plot Demo</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <script src="node_modules/plotly.js/dist/plotly-basic.js"></script>
+    <script src="index.js"></script>
+    <style type="text/css">
+    <!--
+      #myPlotlyChart {
+        width: 100%;
+        height: 40%;
+      }
+    -->
+    </style>
+  </head>
+  <body onload="display_chart2();">
+    <h1>Local Trend Plot Demo</h1>
+
+    <div id="myPlotlyChart" style="width:100% height:40%"></div>
+  </body>
+</html>

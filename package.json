@@ -1,0 +1,19 @@
+{
+  "name": "POC",
+  "version": "1.0.0",
+  "description": "Proof of concept",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^10.1.1"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "plotly.js": "^1.56.0"
+  }
+}
