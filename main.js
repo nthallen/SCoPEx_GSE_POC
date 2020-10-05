@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require("path");
 
 let win;
+let dataInterval;
 
 function createWindow () {
   // Create the browser window.
@@ -17,22 +18,24 @@ function createWindow () {
     }
   })
 
-  // and load the index.html of the app.
-  //win.setMenuBarVisibility(false);
+  // win.setMenuBarVisibility(false);
   // win.webContents.openDevTools();
   win.loadFile('index.html');
-
-  // const interval = setInterval(() => {
-      // win.send('send_data', Math.random());
-    // }, 1000);
 }
 
 app.whenReady().then(createWindow)
 
-ipcMain.on("toMain", (event, args) => {
-  // fs.readFile("path/to/file", (error, data) => {
-    // Do something with file contents
-
-    // Send result back to renderer process
-  win.webContents.send("fromMain", "A Message: " + args);
+ipcMain.on("startup", (event, args) => {
+  const rate = 4;
+  dataInterval = setInterval(() => {
+      win.webContents.send('graphData', Math.random() - 0.5);
+    }, 1000/rate);
 });
+
+ipcMain.on("shutdown", (event, args) => {
+    if (typeof(dataInterval) !== 'undefined') {
+      clearInterval(dataInterval);
+      dataInterval = undefined;
+    }
+  }
+);
