@@ -9,6 +9,7 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": "github:nthallen/SCoPEx_GSE_POC",
   "devDependencies": {
     "electron": "^10.1.1"
   },
