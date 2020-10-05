@@ -45,6 +45,22 @@ function display_chart2() {
     }, 1000/rate);
 }
 
-// ipcRenderer.on('send_data', (event, val) => {
-    // console.log("Received value " + val);
-  // });
+// https://stackoverflow.com/questions/9899372/pure-javascript-equivalent-of-jquerys-ready-how-to-call-a-function-when-t
+function docReady(fn) {
+  // see if DOM is already available
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    // call on next available tick
+    setTimeout(fn, 1);
+  } else {
+    document.addEventListener("DOMContentLoaded", fn);
+  }
+}
+
+docReady(function() {
+  console.log('Setting up send/receive');
+  window.api.receive("fromMain", (data) => {
+      console.log("Received '" + data + "' from main process");
+  });
+  window.api.send("toMain", "some data");
+  console.log('Setup send/receive');
+});
